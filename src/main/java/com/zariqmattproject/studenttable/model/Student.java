@@ -1,12 +1,14 @@
 package com.zariqmattproject.studenttable.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Document("Student")
-
+@SuppressWarnings("serial")
 public class Student extends AuditAbstract {
     @Id
     private String id;
@@ -19,14 +21,39 @@ public class Student extends AuditAbstract {
 
     private String address;
 
+    private String classname;
+
+
+    private String classId;
+
+
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false , cascade = CascadeType.ALL)
+    @JoinColumn(name = "class_id", nullable = false)
+    @JsonIgnore
+    private Class classModel;
+
+    public Class getClassModel() {
+        return classModel;
+    }
+
+    public void setClassModel(Class classModel) {
+        this.classModel = classModel;
+    }
+
     //constructor
-    public Student(String id, String name, boolean status, int age, String address) {
+    public Student(String id, String name, boolean status, int age, String address, String classname, String classId ) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.age = age;
         this.address = address;
+        this.classname = classname;
+        this.classId = classId;
         this.setCreatedOn(new Date());
+
 
     }
 
@@ -50,6 +77,10 @@ public class Student extends AuditAbstract {
     public String getAddress() {
         return address;
     }
+
+    public String getClassname()  {return classname; }
+
+    public String getClassId()  {return classId; }
 
 
 
@@ -75,17 +106,25 @@ public class Student extends AuditAbstract {
         this.address = address;
     }
 
+    public void setClassname(String classname) { this.classname = classname; }
+
+    public void setClassId(String classId) { this.classId = classname; }
+
 
 
     //to string
     @Override
     public String toString() {
-        return "Student{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                ", age=" + age +
-                ", address='" + address + '\'' +
+        return "Student{" +"\n"+
+                "id='" + id + '\'' + "\n"+
+                "name='" + name + '\'' + "\n"+
+                "status=" + status + "\n"+
+                "age=" + age + "\n"+
+                "address='" + address + '\'' +"\n"+
+                "classname=" + classname +"\n"+
+                "classId=" + classId +"\n"+
                 '}';
     }
+
+
 }
