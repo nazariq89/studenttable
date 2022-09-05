@@ -1,6 +1,5 @@
 package com.zariqmattproject.studenttable.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,14 +21,6 @@ public class Student extends AuditAbstract {
     private String address;
 
 
-   // private String classname;
-
-
-  //  private String classId;
-
-
-
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false , cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id", nullable = false)
@@ -42,7 +33,6 @@ public class Student extends AuditAbstract {
         this.status = status;
         this.age = age;
         this.address = address;
-       // this.classname = classname;
         this.setCreatedOn(new Date());
     }
 
@@ -75,12 +65,6 @@ public class Student extends AuditAbstract {
         return address;
     }
 
-   // public String getClassname()  {return classname; }
-
-    //public String getClassId()  {return classId; }
-
-
-
 
     //setter
     public void setId(String id) {
@@ -103,11 +87,6 @@ public class Student extends AuditAbstract {
         this.address = address;
     }
 
-    //public void setClassname(String classname) { this.classname = classname; }
-
-   // public void setClassId(String classId) { this.classId = classname; }
-
-    //to string
     @Override
     public String toString() {
         return "Student{" +"\n"+
@@ -116,10 +95,6 @@ public class Student extends AuditAbstract {
                 "status=" + status + "\n"+
                 "age=" + age + "\n"+
                 "address='" + address + '\'' +"\n"+
-        // "classname='" + classname + '\'' +"\n"+
-
                 '}';
     }
-
-
 }

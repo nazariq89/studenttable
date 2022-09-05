@@ -57,19 +57,8 @@ public class StudentAPI {
         Optional<Student> student = studentRepo.findById(Id);
 
         if (student.isPresent()) {
-
-//          String data =
-//                  "createdOn :" +student.get().getCreatedOn() +"\n"
-//                 + "modifiedOn :" + student.get().getModifiedOn() +"\n"
-//                   +student.get()+"\n"
-//                  + student.get().getClassModel();
-//
-//          return data;
-
             return student.get();
 
-          // return student.get();
-         //  return student.get().getClassModel();
         } else {
             return "User not found.";
         }
@@ -101,13 +90,6 @@ public class StudentAPI {
             return "User not found.";
         }
     }
-
-
-
-
-
-
-
 }
 
 

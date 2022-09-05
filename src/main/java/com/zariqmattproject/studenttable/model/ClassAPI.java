@@ -42,8 +42,6 @@ public class ClassAPI {
     }
 
 
-
-
     @RequestMapping(value = "delete/{classId}" , method = RequestMethod.DELETE)
     public String deleteStudent(@PathVariable String classId) {
         Optional<Class> classtest= classRepo.findById(classId);   //1 find object id.
@@ -54,7 +52,6 @@ public class ClassAPI {
             return "User not found.";
         }
     }
-
 
 
 
@@ -71,15 +68,6 @@ public class ClassAPI {
             return "User not found.";
         }
     }
-
-
-
-
-
-
-
-
-
 }
 
 

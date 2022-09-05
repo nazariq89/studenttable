@@ -3,8 +3,6 @@ package com.zariqmattproject.studenttable.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +13,6 @@ public class Class extends AuditAbstract {
     private String name;
     private boolean status;
 
-   // @OneToMany( fetch = FetchType.LAZY, mappedBy = "classModel")
     private List<Student> student;
     public String getId() {
         return id;
