@@ -21,10 +21,11 @@ public class Student extends AuditAbstract {
 
     private String address;
 
-    private String classname;
+
+   // private String classname;
 
 
-    private String classId;
+  //  private String classId;
 
 
 
@@ -32,8 +33,18 @@ public class Student extends AuditAbstract {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false , cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id", nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Class classModel;
+
+    public Student(String id, String name, boolean status, int age, String address ) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.age = age;
+        this.address = address;
+       // this.classname = classname;
+        this.setCreatedOn(new Date());
+    }
 
     public Class getClassModel() {
         return classModel;
@@ -41,20 +52,6 @@ public class Student extends AuditAbstract {
 
     public void setClassModel(Class classModel) {
         this.classModel = classModel;
-    }
-
-    //constructor
-    public Student(String id, String name, boolean status, int age, String address, String classname, String classId ) {
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.age = age;
-        this.address = address;
-        this.classname = classname;
-        this.classId = classId;
-        this.setCreatedOn(new Date());
-
-
     }
 
     //Getter
@@ -78,9 +75,9 @@ public class Student extends AuditAbstract {
         return address;
     }
 
-    public String getClassname()  {return classname; }
+   // public String getClassname()  {return classname; }
 
-    public String getClassId()  {return classId; }
+    //public String getClassId()  {return classId; }
 
 
 
@@ -106,11 +103,9 @@ public class Student extends AuditAbstract {
         this.address = address;
     }
 
-    public void setClassname(String classname) { this.classname = classname; }
+    //public void setClassname(String classname) { this.classname = classname; }
 
-    public void setClassId(String classId) { this.classId = classname; }
-
-
+   // public void setClassId(String classId) { this.classId = classname; }
 
     //to string
     @Override
@@ -121,8 +116,8 @@ public class Student extends AuditAbstract {
                 "status=" + status + "\n"+
                 "age=" + age + "\n"+
                 "address='" + address + '\'' +"\n"+
-                "classname=" + classname +"\n"+
-                "classId=" + classId +"\n"+
+        // "classname='" + classname + '\'' +"\n"+
+
                 '}';
     }
 

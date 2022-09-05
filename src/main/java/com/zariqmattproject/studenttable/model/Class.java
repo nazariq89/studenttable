@@ -3,7 +3,10 @@ package com.zariqmattproject.studenttable.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 
 @Document
 public class Class extends AuditAbstract {
@@ -12,7 +15,8 @@ public class Class extends AuditAbstract {
     private String name;
     private boolean status;
 
-
+   // @OneToMany( fetch = FetchType.LAZY, mappedBy = "classModel")
+    private List<Student> student;
     public String getId() {
         return id;
     }
@@ -38,10 +42,11 @@ public class Class extends AuditAbstract {
         this.status = status;
     }
 
-    public Class(String id, String name, boolean status) {
+    public Class(String id, String name, boolean status, List<Student> student) {
         this.id = id;
         this.name = name;
         this.status = status;
+        this.student = student;
         this.setCreatedOn(new Date());
     }
 

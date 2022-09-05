@@ -34,32 +34,45 @@ public class StudentAPI {
     @RequestMapping(value = "/create/{classId}", method = RequestMethod.POST)
     public Student addNewStudent(@RequestBody Student studentParam , @PathVariable String classId) {
         Optional<Class> className = classRepo.findById(classId);
+        if (!className.isPresent()){
+            throw new RuntimeException("NOt FOUND");
+        }
+
         Student student = studentRepo.save(studentParam);
         student.setClassModel(className.get());
         studentRepo.save(student);
+
         return student;
     }
 
     @RequestMapping(value = "/liststudent", method = RequestMethod.GET)
     public List<Student> listallstudent() {
         return studentRepo.findAll();
+
     }
 
 
     @RequestMapping(value = "/find/{Id}", method = RequestMethod.GET)
     public Object getStudentById(@PathVariable String Id) {
         Optional<Student> student = studentRepo.findById(Id);
+
         if (student.isPresent()) {
-//            String data =  " name: " +   student.get().getName() +"\n"+ "classId : " + student.get().getClassModel().getId() +"\n"+
-//                    "\n" +student;
-//            return data;
+
+//          String data =
+//                  "createdOn :" +student.get().getCreatedOn() +"\n"
+//                 + "modifiedOn :" + student.get().getModifiedOn() +"\n"
+//                   +student.get()+"\n"
+//                  + student.get().getClassModel();
+//
+//          return data;
+
             return student.get();
 
-
+          // return student.get();
+         //  return student.get().getClassModel();
         } else {
             return "User not found.";
         }
-
     }
 
     @RequestMapping(value = "delete/{Id}" , method = RequestMethod.DELETE)
